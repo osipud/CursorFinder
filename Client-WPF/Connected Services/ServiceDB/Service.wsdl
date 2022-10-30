@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://tempuri.org/" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" name="Service" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="NetTcpBinding_IService_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <msf:WindowsTransportSecurity xmlns:msf="http://schemas.microsoft.com/ws/2006/05/framing/policy">
+                  <msf:ProtectionLevel>EncryptAndSign</msf:ProtectionLevel>
+                </msf:WindowsTransportSecurity>
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+          </wsp:Policy>
+        </sp:TransportBinding>
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:8301/?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:8301/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:8301/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Server_WCF.Models" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IService_GetAllCursorPositions_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllCursorPositions" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetAllCursorPositions_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllCursorPositionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_AddNewCursorPosition_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddNewCursorPosition" />
+  </wsdl:message>
+  <wsdl:message name="IService_AddNewCursorPosition_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddNewCursorPositionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_StartRecord_InputMessage">
+    <wsdl:part name="parameters" element="tns:StartRecord" />
+  </wsdl:message>
+  <wsdl:message name="IService_StartRecord_OutputMessage">
+    <wsdl:part name="parameters" element="tns:StartRecordResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_StopRecord_InputMessage">
+    <wsdl:part name="parameters" element="tns:StopRecord" />
+  </wsdl:message>
+  <wsdl:message name="IService_StopRecord_OutputMessage">
+    <wsdl:part name="parameters" element="tns:StopRecordResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_Auth_InputMessage">
+    <wsdl:part name="parameters" element="tns:Auth" />
+  </wsdl:message>
+  <wsdl:message name="IService_Auth_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AuthResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_ClearDb_InputMessage">
+    <wsdl:part name="parameters" element="tns:ClearDb" />
+  </wsdl:message>
+  <wsdl:message name="IService_ClearDb_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ClearDbResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_IsUSerAdmin_InputMessage">
+    <wsdl:part name="parameters" element="tns:IsUSerAdmin" />
+  </wsdl:message>
+  <wsdl:message name="IService_IsUSerAdmin_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IsUSerAdminResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetDbRecordsCount_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDbRecordsCount" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetDbRecordsCount_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDbRecordsCountResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_EnableNotification_InputMessage">
+    <wsdl:part name="parameters" element="tns:EnableNotification" />
+  </wsdl:message>
+  <wsdl:message name="IService_EnableNotification_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EnableNotificationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_DisableNotification_InputMessage">
+    <wsdl:part name="parameters" element="tns:DisableNotification" />
+  </wsdl:message>
+  <wsdl:message name="IService_DisableNotification_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DisableNotificationResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IService">
+    <wsdl:operation name="GetAllCursorPositions">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/GetAllCursorPositions" message="tns:IService_GetAllCursorPositions_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/GetAllCursorPositionsResponse" message="tns:IService_GetAllCursorPositions_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddNewCursorPosition">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/AddNewCursorPosition" message="tns:IService_AddNewCursorPosition_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/AddNewCursorPositionResponse" message="tns:IService_AddNewCursorPosition_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="StartRecord">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/StartRecord" message="tns:IService_StartRecord_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/StartRecordResponse" message="tns:IService_StartRecord_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="StopRecord">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/StopRecord" message="tns:IService_StopRecord_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/StopRecordResponse" message="tns:IService_StopRecord_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Auth">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/Auth" message="tns:IService_Auth_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/AuthResponse" message="tns:IService_Auth_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ClearDb">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/ClearDb" message="tns:IService_ClearDb_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/ClearDbResponse" message="tns:IService_ClearDb_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IsUSerAdmin">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/IsUSerAdmin" message="tns:IService_IsUSerAdmin_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/IsUSerAdminResponse" message="tns:IService_IsUSerAdmin_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDbRecordsCount">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/GetDbRecordsCount" message="tns:IService_GetDbRecordsCount_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/GetDbRecordsCountResponse" message="tns:IService_GetDbRecordsCount_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EnableNotification">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/EnableNotification" message="tns:IService_EnableNotification_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/EnableNotificationResponse" message="tns:IService_EnableNotification_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DisableNotification">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/DisableNotification" message="tns:IService_DisableNotification_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/DisableNotificationResponse" message="tns:IService_DisableNotification_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="NetTcpBinding_IService" type="tns:IService">
+    <wsp:PolicyReference URI="#NetTcpBinding_IService_policy" />
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="GetAllCursorPositions">
+      <soap12:operation soapAction="http://tempuri.org/IService/GetAllCursorPositions" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddNewCursorPosition">
+      <soap12:operation soapAction="http://tempuri.org/IService/AddNewCursorPosition" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StartRecord">
+      <soap12:operation soapAction="http://tempuri.org/IService/StartRecord" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StopRecord">
+      <soap12:operation soapAction="http://tempuri.org/IService/StopRecord" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Auth">
+      <soap12:operation soapAction="http://tempuri.org/IService/Auth" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ClearDb">
+      <soap12:operation soapAction="http://tempuri.org/IService/ClearDb" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsUSerAdmin">
+      <soap12:operation soapAction="http://tempuri.org/IService/IsUSerAdmin" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDbRecordsCount">
+      <soap12:operation soapAction="http://tempuri.org/IService/GetDbRecordsCount" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EnableNotification">
+      <soap12:operation soapAction="http://tempuri.org/IService/EnableNotification" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DisableNotification">
+      <soap12:operation soapAction="http://tempuri.org/IService/DisableNotification" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Service">
+    <wsdl:port name="NetTcpBinding_IService" binding="tns:NetTcpBinding_IService">
+      <soap12:address location="net.tcp://localhost:8302/" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://localhost:8302/</wsa10:Address>
+        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
+          <Upn>VSTPINK-DESKTOP\Nail</Upn>
+        </Identity>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

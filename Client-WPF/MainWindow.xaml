@@ -1,0 +1,48 @@
+﻿<Window x:Class="Client_WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Client_WPF"
+        mc:Ignorable="d"
+        Title="Client - WPF (тестовое задание)" Height="400" Width="269" ResizeMode="NoResize">
+    <Grid>
+        <StackPanel>
+            <GroupBox x:Name="groupBox" Height="53" Header="Запись">
+                <StackPanel>
+                    <Button x:Name="StartButton" Content="Запись действий" Margin="0,5,0,5" Click="Start_Button_Click"/>
+                </StackPanel>
+            </GroupBox>
+
+            <GroupBox x:Name="groupBox1" Height="47" Header="Уведомления">
+                <StackPanel>
+                    <CheckBox x:Name="checkBox" Content="Активация уведомлений" Margin="0,5,0,5" Checked="NotificationToggle_Checked" Unchecked="NotificationToggle_Unchecked"/>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox x:Name="groupBox2" Height="48" Header="Окна">
+                <StackPanel>
+                    <Button x:Name="ActionList_Button" Content="Список активности" Click="ActionList_Button_Click"/>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox x:Name="groupBox3" Height="51" Header="Информация">
+                <StackPanel Orientation="Horizontal" Height="27">
+                    <Label x:Name="label" Content="Количество записей в БД:"/>
+                    <TextBlock x:Name="DbRecordsCountTextBlock" TextWrapping="Wrap" Text="" TextAlignment="Center" Width="86" Height="16"/>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox x:Name="groupBox4" Height="55" Header="Соединение с сервером">
+                <StackPanel Orientation="Horizontal">
+                    <Label x:Name="ConnectionLabel" Content="" Width="242"/>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox x:Name="groupBox5" Height="129" Header="Администрирование">
+                <StackPanel>
+                    <Button x:Name="Admin_Signin_Button" Content="Войти как администратор" Margin="0,5,0,5" Click="Admin_Signin_Button_Click"/>
+                    <Button x:Name="User_Signin_Button" Content="Войти как пользователь" Margin="0,5,0,5" Click="User_Signin_Button_Click"/>
+                    <Button x:Name="ClearDbButton" Content="Очистка записей в БД" Margin="0,5,0,5" Click="ClearDbButton_Click"/>
+                </StackPanel>
+            </GroupBox>
+        </StackPanel>
+    </Grid>
+
+</Window>

@@ -1,0 +1,22 @@
+﻿<Window x:Class="Client_WPF.MouseActionList"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Client_WPF"
+        mc:Ignorable="d"
+        Title="Список действий курсора" Height="450" Width="424">
+    <Grid Margin="0,0,346,-6">
+        <ListView ItemsSource="{Binding CursorPositions}" Margin="0,0,-346,10" Grid.ColumnSpan="2">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding XPos}">Координата X</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding YPos}">Координата Y</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding DateTime}">Дата и время</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding ActionType}">Действие</GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+    </Grid>
+</Window>
