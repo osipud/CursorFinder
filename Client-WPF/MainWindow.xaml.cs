@@ -16,7 +16,8 @@ using System.Windows.Shapes;
 using Client_WPF.ServiceDB;
 
 using Client_WPF.Controllers;
-
+using System.Windows.Threading;
+using System.Threading;
 
 namespace Client_WPF
 {
@@ -29,6 +30,8 @@ namespace Client_WPF
         private bool _isRecording;
         private readonly ServiceDBController _finderServiceController;
 
+
+
         public MainWindow()
         {
             InitializeComponent();
@@ -36,7 +39,24 @@ namespace Client_WPF
             UpdateRecordsCount();
             ClearDbButton.IsEnabled = false;
             StartButton.Background = new SolidColorBrush(Colors.Lime);
+            TimerInit();
         }
+
+        private void TimerInit()
+        {
+            System.Windows.Threading.DispatcherTimer timer = new System.Windows.Threading.DispatcherTimer();
+            timer.Tick += new EventHandler(timerTick);
+            timer.Interval = new TimeSpan(0, 0, 0, 0, 2);
+            timer.Start();
+        }
+
+        private async void timerTick(object sender, EventArgs e)
+        {
+            if (!_isRecording) return;
+            await _finderServiceController.RecordOut();
+            UpdateRecordsCount();
+        }
+
         public async void UpdateRecordsCount()
         {
             var count = await _finderServiceController.GetDbRecordsCount();
@@ -199,9 +219,5 @@ namespace Client_WPF
 
 
         }
-
-
-
-
     }
 }

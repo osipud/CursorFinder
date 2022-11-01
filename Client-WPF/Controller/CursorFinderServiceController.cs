@@ -8,7 +8,10 @@ using System.Windows.Input;
 using System.Drawing;
 using Point = System.Drawing.Point;
 using Client_WPF.ServiceDB;
-
+using System.Runtime.InteropServices;
+using System.Windows.Threading;
+using System.Windows.Controls;
+using Control = System.Windows.Forms.Control;
 
 namespace Client_WPF.Controllers
 {
@@ -17,6 +20,9 @@ namespace Client_WPF.Controllers
         private Point _lastPoint;
         private ServiceClient _client;
         private const float _distanceForUpdatePX = 10;
+
+        public static System.Drawing.Point Position { get; set; }
+
 
         public ServiceDBController()
         {
@@ -98,6 +104,10 @@ namespace Client_WPF.Controllers
         public async void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             var point = Control.MousePosition;
+
+            
+
+
             UpdateLastPoint(point);
             await UpdateCursorPositionAsync(point, GetCurrentMouseActionType(e));
         }
@@ -124,6 +134,24 @@ namespace Client_WPF.Controllers
             }
         }
 
+        public async Task<bool> RecordOut()
+        {
+
+            var point = Control.MousePosition;
+            if (GetDistanceBeetweenPoints(point) < DistanceForUpdate)
+            {
+                return false;
+            }
+            else
+            {
+                UpdateLastPoint(point);
+                await UpdateCursorPositionAsync(point, MouseActionType.Shift);
+            }
+
+            return false;
+
+        }
+        
         public async Task Window_MouseMove(object sender, System.Windows.Input.MouseEventArgs e)
         {
             var point = Control.MousePosition;
@@ -148,20 +176,8 @@ namespace Client_WPF.Controllers
 
         public async Task ClearDbRecords() => await ServiceClient.ClearDbAsync(UserToken);
         private void UpdateLastPoint(Point newPoint) => _lastPoint = newPoint;
-        /// <summary>
-        /// Решил убрать из формулы рассчета расстояния между
-        /// точками квадратный корень, тк тяжелая операция,
-        /// в которой нет критической необходимости
-        /// </summary>
-        /// <param name="point"></param>
-        /// <returns></returns>
         private float GetDistanceBeetweenPoints(Point point) => (float)(Math.Pow((point.X - _lastPoint.X), 2) + Math.Pow((point.Y - _lastPoint.Y), 2));
 
-        /// <summary>
-        ///  определение какая кнопка мыши была нажата
-        /// </summary>
-        /// <param name="e"></param>
-        /// <returns></returns>
         private MouseActionType GetCurrentMouseActionType(MouseButtonEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
